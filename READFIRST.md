@@ -10,7 +10,7 @@
 
 1. From the `Quick Open`  Command Palette (ctrl/cmd + shift + p) search for:
      `Terminal: Create New Integrated Terminal`
-2. From the `Quick Open` options select this project.
+2. From the `Quick Open` options select this proje                      ct.
 3. Once you are inside the Terminal, execute: `npm install`
 4. Finally to run this example run `npm run dev`
 5. Open your browser on http://localhost:8080

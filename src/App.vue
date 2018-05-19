@@ -2,15 +2,14 @@
   <div id="app">
     <h1>Witaj w systemie zapisów na zajęcia</h1>
     
-    <div v-if= "logedin == false" >
-      <p>zaloguj się e-mailem: <input type="email" v-model="email">
-      <button @click="loginByEmail()">Zaloguj</button></p>
+    <div v-if = "!authenticatedEmail">
+      <login-form @login = "loginByEmail($event)" ></login-form>
     </div>
 
-    <div v-if="logedin == true" >
-      <h1>Wtaj  {{email.toLowerCase()}} </h1>
+    <div v-else>
+      <h2>Wtaj  {{authenticatedEmail.toLowerCase()}} </h2>
      <!-- <p><button @click="logoutByEmail()">Wyloguj</button></p> -->
-      <a href="" @click="logoutByEmail()">Wyloguj</a>
+     <p><a href="" @click="logoutByEmail()">Wyloguj</a></p>
     </div>
     
     
@@ -18,20 +17,24 @@
 </template>
 
 <script>
+import "milligram";
+import LoginForm from "./LoginForm";
+
 export default {
+  components: {LoginForm},
   name: "app",
   data() {
     return {
-      email: "jakis@email.pl",
-      logedin: false,
+      authenticatedEmail: '',
+      
     };
   },
   methods: {
-    loginByEmail() {
-      this.logedin = true;
+    loginByEmail(email) {
+      this.authenticatedEmail = email;
     },
     logoutByEmail() {
-      this.logedin = false;
+      this.authenticatedEmail = '';
     }
   }
 };
