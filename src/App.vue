@@ -6,10 +6,11 @@
       <p>zaloguj się e-mailem: <input type="email" v-model="email">
       <button @click="loginByEmail()">Zaloguj</button></p>
     </div>
+
     <div v-if="logedin == true" >
-      <h1>Wtaj</h1>
-      <p>Twój email to :{{email.toLowerCase()}}
-      <button @click="logoutByEmail()">Wyloguj</button></p>
+      <h1>Wtaj  {{email.toLowerCase()}} </h1>
+     <!-- <p><button @click="logoutByEmail()">Wyloguj</button></p> -->
+      <a href="" @click="logoutByEmail()">Wyloguj</a>
     </div>
     
     
