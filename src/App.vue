@@ -3,7 +3,17 @@
     <h1>Witaj w systemie zapisów na zajęcia</h1>
     
     <div v-if = "!authenticatedEmail">
-      <login-form @login = "loginByEmail($event)" ></login-form>
+      <login-form @login = "loginByEmail($event)" 
+                  :button-label ="'Wchodzę'" ></login-form>
+
+                  <login-form @login = "loginByEmail($event)" 
+                  :button-label ="'Loguję'" ></login-form>
+                  
+                  <login-form @login = "loginByEmail($event)" 
+                  :button-label ="'OK'" ></login-form>
+                  
+                  <login-form @login = "loginByEmail($event)" 
+                  :button-label ="'itp'" ></login-form>
     </div>
 
     <div v-else>
