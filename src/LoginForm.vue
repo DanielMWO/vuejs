@@ -8,16 +8,29 @@
 
 <script>
 export default {
-    props: ['buttonLabel'],
-data() {
-     return {
-         email: ''
-     }
- },
- methods: {
-     enter() {
-         this.$emit('login', this.email);
-     }
- }
+  props: ["buttonLabel"],
+  
+  // mounted() {
+  //   if (!this.buttonLabel) {
+  //     this.buttonLabel = "Zaloguj się";
+  //   }
+  // },
+
+  data() {
+    return {
+      email: ""
+    };
+  },
+  methods: {
+    enter() {
+      this.$emit("login", this.email);
+    }
+  },
+  computed: {
+  buttonLabelToDisplay() {
+    return this.buttonLabel || 'Zaloguj się';  
+  }
 }
+
+};
 </script>

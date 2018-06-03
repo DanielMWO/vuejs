@@ -3,8 +3,8 @@
     <h1>Witaj w systemie zapisów na zajęcia</h1>
     
     <div v-if = "!authenticatedEmail">
-      <login-form @login = "loginByEmail($event)" 
-                  :button-label ="'Wchodzę'" ></login-form>
+                  <login-form @login = "loginByEmail($event)" 
+                 > </login-form>
 
                   <login-form @login = "loginByEmail($event)" 
                   :button-label ="'Loguję'" ></login-form>
@@ -17,21 +17,29 @@
     </div>
 
     <div v-else>
-      <h2>Wtaj  {{authenticatedEmail.toLowerCase()}} </h2>
-     <!-- <p><button @click="logoutByEmail()">Wyloguj</button></p> -->
-     <p><a href="" @click="logoutByEmail()">Wyloguj</a></p>
+            <loggedin @logout = "logoutByEmail()"
+            
+            :email = authenticatedEmail></loggedin>
+            
     </div>
-    
+   
     
   </div>
 </template>
 
+
+
+
+
 <script>
 import "milligram";
 import LoginForm from "./LoginForm";
+import Loggedin from "./Loggedin";
 
 export default {
-  components: {LoginForm},
+  components: {LoginForm, Loggedin},
+              
+  
   name: "app",
   data() {
     return {
@@ -43,12 +51,18 @@ export default {
     loginByEmail(email) {
       this.authenticatedEmail = email;
     },
-    logoutByEmail() {
+   logoutByEmail() {
       this.authenticatedEmail = '';
-    }
+   }
+
   }
 };
 </script>
+
+
+
+
+
 
 <style lang="scss">
 #app {
