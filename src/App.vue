@@ -10,7 +10,9 @@
     <div v-else>
             <loggedin @logout = "logoutByEmail()"
             :email = authenticatedEmail></loggedin>
-            <meeting-page></meeting-page>
+            <meeting-page
+            :email = authenticatedEmail> 
+            </meeting-page>
    
     </div>
    
@@ -55,12 +57,12 @@ export default {
 
 
 
-<style lang="css">
+<style lang="scss">
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
+  text-align: left;
   color: #2c3e50;
   margin-top: 60px;
 }

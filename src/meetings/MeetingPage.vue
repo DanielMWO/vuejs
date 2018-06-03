@@ -1,8 +1,20 @@
 <template>
     <div>
-       <h2>Zajęcia</h2>
+       <div>
+       <button  
+       @click="addMeting()"
+       >{{buttonText}}</button>
+       <h2 v-if="!meetings.length">Brak zaplanowyanycyh zajęć</h2>
+       <h2 v-else>Zaplanowane zajęcia {{meetings.length}}</h2>
+        </div>
+
+       <div v-if="showAddMeting">
        <new-meeting-form @added="addNewMeeting($event)"></new-meeting-form>
-       <meetings-list :meetings="meetings"></meetings-list>
+       </div>
+       
+       <meetings-list :meetings="meetings"
+                      :email = "email" 
+                        ></meetings-list>
     </div>
 </template>
 
@@ -19,9 +31,14 @@ import MeetingsList from "./MeetingsList";
 
 export default {
   components: {NewMeetingForm, MeetingsList},
-  data() {
+
+  props : ["email"],
+
+    data() {
       return {
-          meetings: []
+          meetings: [],
+          showAddMeting: false,
+          
       };
   },
 
@@ -29,11 +46,26 @@ export default {
 methods: {
       addNewMeeting(meeting) {
           this.meetings.push(meeting);
-      }
+          this.showAddMeting = false;
+      },
+      addMeting() {
+          this.showAddMeting = true
+      }  
+
   },
 computed: {
 
-    
+      buttonText() {
+          if (!this.meetings.length) {
+              return "Dodaj Nowe Zajęcia"
+          }
+          else {
+              return "Dodaj Kolejne zajecia"
+          }
+
+      }  
+
+
 }
 
 
