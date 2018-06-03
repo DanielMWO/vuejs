@@ -13,13 +13,15 @@
                 <td>{{ meeting.name }}</td>
                 <td>{{ meeting.description }}</td>
                 <td>{{partictpants}}</td>
-                <td v-if="emptyMeeting"><button
+                <td v-if="!iAmInMeeting"><button
                 @click ="enroll()">
                 Zapisz Się</button></td>
-                <td v-if="emptyMeeting"><button>Usuń Puste Spotkanie</button></td>
+                
                 <td v-else><button
                 @click="resign()"
                 >Wypisz Się</button></td>
+
+                <td v-if="emptyMeeting"><button>Usuń Puste Spotkanie</button></td>
 
             </tr>
         </tbody>
@@ -55,6 +57,14 @@ export default
             }
             else {
                 return false;}
+        
+        },
+        iAmInMeeting() {
+            if (this.partictpants.includes(this.email)) {
+                return true;
+                }
+            else {return false;}
+            
 
         }
     }
