@@ -4,23 +4,13 @@
     
     <div v-if = "!authenticatedEmail">
                   <login-form @login = "loginByEmail($event)" 
-                 > </login-form>
-
-                  <login-form @login = "loginByEmail($event)" 
-                  :button-label ="'Loguję'" ></login-form>
-                  
-                  <login-form @login = "loginByEmail($event)" 
-                  :button-label ="'OK'" ></login-form>
-                  
-                  <login-form @login = "loginByEmail($event)" 
-                  :button-label ="'itp'" ></login-form>
+                   :button-label = "'Zaloguj'"> </login-form>                  
     </div>
 
     <div v-else>
             <loggedin @logout = "logoutByEmail()"
-            
             :email = authenticatedEmail></loggedin>
-            
+            <meetings-page></meetings-page>
     </div>
    
     
@@ -35,9 +25,9 @@
 import "milligram";
 import LoginForm from "./LoginForm";
 import Loggedin from "./Loggedin";
-
+import MeetingsPage from "./meetings/MeetingPage"
 export default {
-  components: {LoginForm, Loggedin},
+  components: {LoginForm, Loggedin, MeetingsPage},
               
   
   name: "app",
