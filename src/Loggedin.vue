@@ -1,10 +1,9 @@
 <template>
     <div>  
-
-    <h2>Wtaj  {{email.toLowerCase()}} </h2>
-    <p><button @click="logout()">Wyloguj</button></p>
-    
-
+        <div>     
+         <p>Witaj  {{email.toLowerCase()}}
+         <button @click="logout()">Wyloguj</button></p>
+         </div>
     </div>
 </template>
 

@@ -10,7 +10,8 @@
     <div v-else>
             <loggedin @logout = "logoutByEmail()"
             :email = authenticatedEmail></loggedin>
-            <meetings-page></meetings-page>
+            <meeting-page></meeting-page>
+   
     </div>
    
     
@@ -25,9 +26,9 @@
 import "milligram";
 import LoginForm from "./LoginForm";
 import Loggedin from "./Loggedin";
-import MeetingsPage from "./meetings/MeetingPage"
+import MeetingPage from "./meetings/MeetingPage"
 export default {
-  components: {LoginForm, Loggedin, MeetingsPage},
+  components: {LoginForm, Loggedin, MeetingPage },
               
   
   name: "app",
@@ -54,7 +55,7 @@ export default {
 
 
 
-<style lang="scss">
+<style lang="css">
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

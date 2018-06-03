@@ -6,9 +6,16 @@
     </div>
 </template>
 
+
+
+
+
+
 <script>
 import NewMeetingForm from "./NewMeetingForm";
 import MeetingsList from "./MeetingsList";
+
+
 
 export default {
   components: {NewMeetingForm, MeetingsList},
@@ -17,10 +24,18 @@ export default {
           meetings: []
       };
   },
-  methods: {
+
+
+methods: {
       addNewMeeting(meeting) {
           this.meetings.push(meeting);
       }
-  }
+  },
+computed: {
+
+    
+}
+
+
 }
 </script>
