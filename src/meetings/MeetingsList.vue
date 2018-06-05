@@ -22,8 +22,8 @@
                 >Wypisz Się</button></td>
 
                 <td v-if="emptyMeeting"><button
-                @click="removeMeeting(meeting.name)"
-                >Usuń Puste Spotkanie</button></td>
+                @click="removeEmptyMeeting(meeting)">
+                Usuń Puste Spotkanie</button></td>
 
             </tr>
         </tbody>
@@ -51,9 +51,8 @@ export default
             this.partictpants.splice(this.partictpants.indexOf(this.email), 1)
         },
 
-         removeMeeting(meeting) {
-             console.log(meeting)
-             this.$emit(removeMeeting, meeting)
+         removeEmptyMeeting(meeting) {
+            this.$emit('removed', meeting);
              
              
         }

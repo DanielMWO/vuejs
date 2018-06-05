@@ -12,7 +12,9 @@
        <new-meeting-form @added="addNewMeeting($event)"></new-meeting-form>
        </div>
        
-       <meetings-list :meetings="meetings"
+       <meetings-list 
+                      @removed="removeMeeting($event)"
+                      :meetings="meetings"
                       :email = "email" 
                         ></meetings-list>
     </div>
@@ -50,6 +52,12 @@ methods: {
       },
       addMeting() {
           this.showAddMeting = true
+      },
+
+      removeMeeting(meeting){
+          this.meetings.splice(this.meetings.indexOf(meeting), 1)
+         
+
       }  
 
   },
