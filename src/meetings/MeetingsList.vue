@@ -12,7 +12,7 @@
             <tr v-for="meeting in meetings" :key="meeting.name">
                 <td>{{ meeting.name }}</td>
                 <td>{{ meeting.description }}</td>
-                <td>{{partictpants}}</td>
+                <td> <ul> <li v-for ="participant in partictpants" :key = "participant.id">{{participant}} </li> </ul></td>
                 <td v-if="!iAmInMeeting"><button
                 @click ="enroll()">
                 Zapisz Się</button></td>
@@ -21,7 +21,9 @@
                 @click="resign()"
                 >Wypisz Się</button></td>
 
-                <td v-if="emptyMeeting"><button>Usuń Puste Spotkanie</button></td>
+                <td v-if="emptyMeeting"><button
+                @click="removeMeeting(meeting.name)"
+                >Usuń Puste Spotkanie</button></td>
 
             </tr>
         </tbody>
@@ -46,11 +48,22 @@ export default
             this.partictpants.push(this.email)
         },
         resign(){
-            this.partictpants.pop(this.email)
+            this.partictpants.splice(this.partictpants.indexOf(this.email), 1)
+        },
+
+         removeMeeting(meeting) {
+             console.log(meeting)
+             this.$emit(removeMeeting, meeting)
+             
+             
         }
     },
     
     computed:{
+        
+        
+       
+        
         emptyMeeting() {
             if (!this.partictpants.length) {
                 return true;
