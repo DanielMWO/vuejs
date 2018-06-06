@@ -14,7 +14,7 @@
                 <td>{{ meeting.description }}</td>
                 <td> <ul> <li v-for ="participant in meeting.participants" :key = "participant.id">{{participant}} </li> </ul></td>
                 <td v-if="!meeting.participants.includes(email)"><button
-                @click ="enroll(meeting)">
+                @click.capture ="enroll(meeting)">
                 Zapisz Się</button></td>
                 
                 <td v-else><button
@@ -48,6 +48,7 @@ export default
             this.$emit('addedParticipant', meeting)
         },
         resign(meeting){
+             ///console.log("dupa2")
              this.$emit('removedParticipant', meeting)
         },
 

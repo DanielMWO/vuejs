@@ -15,7 +15,7 @@
        <meetings-list 
                       @removed="removeMeeting($event)"
                       @addedParticipant="addParticipant($event)"
-                      @removedParticpant="removeParticipant($event)"
+                      @removedParticipant="removeParticipant($event)"
                       :meetings="meetings"
                       :email = "email" 
                         ></meetings-list>
@@ -43,7 +43,7 @@ export default {
          
           meetings: [],
           showAddMeting: false,
-          
+        
       };
   },
 
@@ -66,9 +66,15 @@ methods: {
       addParticipant(meeting) {
           console.log("DUPA")
           meeting.participants.push(this.email)
+          this.meetings.sort() /// MASAKRA 3h szuknania by się stało reakwtwe
+
       },
 
-      removeParticipant(meeting){},
+      removeParticipant(meeting){
+          console.log("DUPA2")
+          meeting.participants.splice(meeting.participants.indexOf(this.email), 1)
+          this.meetings.sort()
+      },
 
 
 
