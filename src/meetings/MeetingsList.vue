@@ -12,16 +12,16 @@
             <tr v-for="meeting in meetings" :key="meeting.name">
                 <td>{{ meeting.name }}</td>
                 <td>{{ meeting.description }}</td>
-                <td> <ul> <li v-for ="participant in partictpants" :key = "participant.id">{{participant}} </li> </ul></td>
-                <td v-if="!iAmInMeeting"><button
-                @click ="enroll()">
+                <td> <ul> <li v-for ="participant in meeting.participants" :key = "participant.id">{{participant}} </li> </ul></td>
+                <td v-if="!meeting.participants.includes(email)"><button
+                @click ="enroll(meeting)">
                 Zapisz Się</button></td>
                 
                 <td v-else><button
-                @click="resign()"
+                @click="resign(meeting)"
                 >Wypisz Się</button></td>
 
-                <td v-if="emptyMeeting"><button
+                <td v-if="!meeting.participants.length"><button
                 @click="removeEmptyMeeting(meeting)">
                 Usuń Puste Spotkanie</button></td>
 
@@ -40,15 +40,15 @@ export default
     {
         return{
             partictpants: [],
-            
+           
         }
     },
     methods: {
-        enroll(){
-            this.partictpants.push(this.email)
+        enroll(meeting){
+            this.$emit('addedParticipant', meeting)
         },
-        resign(){
-            this.partictpants.splice(this.partictpants.indexOf(this.email), 1)
+        resign(meeting){
+             this.$emit('removedParticipant', meeting)
         },
 
          removeEmptyMeeting(meeting) {
@@ -63,19 +63,19 @@ export default
         
        
         
-        emptyMeeting() {
-            if (!this.partictpants.length) {
+        emptyMeeting(meeting) {
+            if (!meeting.participants.length) {
                 return true;
             }
             else {
                 return false;}
         
         },
-        iAmInMeeting() {
-            if (this.partictpants.includes(this.email)) {
+        iAmInMeeting(meeting) {
+            if (meeting.participants.includes(this.email)) {
                 return true;
                 }
-            else {return false;}
+            else {return false}
             
 
         }

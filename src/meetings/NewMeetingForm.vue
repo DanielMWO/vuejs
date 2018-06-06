@@ -14,10 +14,12 @@ export default {
   data() {
       return {
           newMeeting: {}
+          
       };
   },
   methods: {
       addNewMeeting() {
+        this.newMeeting.participants =  [];
         this.$emit('added', this.newMeeting);
         this.newMeeting = {};
     }

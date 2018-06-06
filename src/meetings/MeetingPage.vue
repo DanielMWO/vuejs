@@ -8,12 +8,14 @@
        <h2 v-else>Zaplanowane zajęcia {{meetings.length}}</h2>
         </div>
 
-       <div v-if="showAddMeting">
+       <div v-show="showAddMeting">
        <new-meeting-form @added="addNewMeeting($event)"></new-meeting-form>
        </div>
        
        <meetings-list 
                       @removed="removeMeeting($event)"
+                      @addedParticipant="addParticipant($event)"
+                      @removedParticpant="removeParticipant($event)"
                       :meetings="meetings"
                       :email = "email" 
                         ></meetings-list>
@@ -38,6 +40,7 @@ export default {
 
     data() {
       return {
+         
           meetings: [],
           showAddMeting: false,
           
@@ -58,7 +61,16 @@ methods: {
           this.meetings.splice(this.meetings.indexOf(meeting), 1)
          
 
-      }  
+      },
+
+      addParticipant(meeting) {
+          console.log("DUPA")
+          meeting.participants.push(this.email)
+      },
+
+      removeParticipant(meeting){},
+
+
 
   },
 computed: {
