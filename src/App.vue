@@ -28,26 +28,23 @@
 import "milligram";
 import LoginForm from "./LoginForm";
 import Loggedin from "./Loggedin";
-import MeetingPage from "./meetings/MeetingPage"
+import MeetingPage from "./meetings/MeetingPage";
 export default {
-  components: {LoginForm, Loggedin, MeetingPage },
-              
-  
+  components: { LoginForm, Loggedin, MeetingPage },
+
   name: "app",
   data() {
     return {
-      authenticatedEmail: '',
-      
+      authenticatedEmail: ""
     };
   },
   methods: {
     loginByEmail(email) {
       this.authenticatedEmail = email;
     },
-   logoutByEmail() {
-      this.authenticatedEmail = '';
-   }
-
+    logoutByEmail() {
+      this.authenticatedEmail = "";
+    }
   }
 };
 </script>

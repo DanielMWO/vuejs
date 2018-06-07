@@ -8,7 +8,7 @@
         <p v-if="errors.length">
             <b>Please correct the following error(s):</b>
              <ul>
-               <li v-for="error in errors">{{ error }}</li>
+               <li v-for="error in errors" :key="error.id">{{ error }}</li>
             </ul>
         </p>      
    </div>
@@ -17,7 +17,6 @@
 <script>
 export default {
   props: ["buttonLabel"],
-  
 
   data() {
     return {
@@ -28,33 +27,31 @@ export default {
   methods: {
     enter() {
       this.$emit("login", this.email);
-   },
+    },
     checkform() {
       this.errors = [];
-      if(!this.email) {
+      if (!this.email) {
         this.errors.push("Email required.");
-      } else if(!this.validEmail(this.email)) {
-        this.errors.push("Valid email required.");        
+      } else if (!this.validEmail(this.email)) {
+        this.errors.push("Valid email required.");
       }
-      if(!this.errors.length) return true;
-      e.preventDefault();
+      if (!this.errors.length) return true;
+      //e.preventDefault();
     },
-    validEmail:function(email) {
+    validEmail: function(email) {
       var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
       return re.test(email);
     }
-
   },
   computed: {
-  buttonLabelToDisplay() {
-    return this.buttonLabel || 'Zaloguj się';  
-  },
-  thereAreErrors() {
-    if (this.errors.length){
-      return true;
+    buttonLabelToDisplay() {
+      return this.buttonLabel || "Zaloguj się";
+    },
+    thereAreErrors() {
+      if (this.errors.length) {
+        return true;
+      }
     }
   }
-}
-
 };
 </script>

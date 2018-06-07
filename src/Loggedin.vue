@@ -8,19 +8,14 @@
 </template>
 
 <script>
-
-
-
 export default {
-    props:  ["email"],
+  props: ["email"],
 
-    methods: {
-     logout() {
-      this.$emit('logout')
+  methods: {
+    logout() {
+      this.$emit("logout");
     }
-
-}
-
-}
+  }
+};
 </script>
 
