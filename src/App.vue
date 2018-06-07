@@ -7,7 +7,7 @@
                    :button-label = "'Zaloguj'"> </login-form>                  
     </div>
 
-    <div v-else>
+    <div v-show = "authenticatedEmail" >
             <loggedin @logout = "logoutByEmail()"
             :email = authenticatedEmail></loggedin>
             <meeting-page
