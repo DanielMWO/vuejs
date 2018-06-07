@@ -1,8 +1,16 @@
 <template>
    <div>
        <label>Zaloguj się e-mailem</label>
-       <input type="email" v-model="email">
-       <button @click="enter()">{{buttonLabelToDisplay}}</button>
+       <input @keyup="checkform()" type="email" v-model="email">
+       <button 
+              :disabled="thereAreErrors"
+              @click="enter()">{{buttonLabelToDisplay}}</button>
+        <p v-if="errors.length">
+            <b>Please correct the following error(s):</b>
+             <ul>
+               <li v-for="error in errors">{{ error }}</li>
+            </ul>
+        </p>      
    </div>
 </template>
 
@@ -10,25 +18,41 @@
 export default {
   props: ["buttonLabel"],
   
-  // mounted() {
-  //   if (!this.buttonLabel) {
-  //     this.buttonLabel = "Zaloguj się";
-  //   }
-  // },
 
   data() {
     return {
-      email: ""
+      email: "",
+      errors: []
     };
   },
   methods: {
     enter() {
       this.$emit("login", this.email);
+   },
+    checkform() {
+      this.errors = [];
+      if(!this.email) {
+        this.errors.push("Email required.");
+      } else if(!this.validEmail(this.email)) {
+        this.errors.push("Valid email required.");        
+      }
+      if(!this.errors.length) return true;
+      e.preventDefault();
+    },
+    validEmail:function(email) {
+      var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      return re.test(email);
     }
+
   },
   computed: {
   buttonLabelToDisplay() {
     return this.buttonLabel || 'Zaloguj się';  
+  },
+  thereAreErrors() {
+    if (this.errors.length){
+      return true;
+    }
   }
 }
 
