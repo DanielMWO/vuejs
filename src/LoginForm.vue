@@ -6,7 +6,7 @@
               :disabled="thereAreErrors"
               @click="enter()">{{buttonLabelToDisplay}}</button>
         <p v-if="errors.length">
-            <b>Please correct the following error(s):</b>
+            <b>Popraw następujący bład:</b>
              <ul>
                <li v-for="error in errors" :key="error.id">{{ error }}</li>
             </ul>
@@ -31,9 +31,9 @@ export default {
     checkform() {
       this.errors = [];
       if (!this.email) {
-        this.errors.push("Email required.");
+        this.errors.push("Wymagany adres email.");
       } else if (!this.validEmail(this.email)) {
-        this.errors.push("Valid email required.");
+        this.errors.push("Wymagany poprawny format email.");
       }
       if (!this.errors.length) return true;
       //e.preventDefault();
