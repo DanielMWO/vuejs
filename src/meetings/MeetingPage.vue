@@ -31,69 +31,51 @@
 import NewMeetingForm from "./NewMeetingForm";
 import MeetingsList from "./MeetingsList";
 
-
-
 export default {
-  components: {NewMeetingForm, MeetingsList},
+  components: { NewMeetingForm, MeetingsList },
 
-  props : ["email"],
+  props: ["email"],
 
-    data() {
-      return {
-         
-          meetings: [],
-          showAddMeting: false,
-        
-      };
+  data() {
+    return {
+      meetings: [],
+      showAddMeting: false
+    };
   },
 
+  methods: {
+    addNewMeeting(meeting) {
+      this.meetings.push(meeting);
+      this.showAddMeting = false;
+    },
+    addMeting() {
+      this.showAddMeting = true;
+    },
 
-methods: {
-      addNewMeeting(meeting) {
-          this.meetings.push(meeting);
-          this.showAddMeting = false;
-      },
-      addMeting() {
-          this.showAddMeting = true
-      },
+    removeMeeting(meeting) {
+      this.meetings.splice(this.meetings.indexOf(meeting), 1);
+    },
 
-      removeMeeting(meeting){
-          this.meetings.splice(this.meetings.indexOf(meeting), 1)
-         
+    addParticipant(meeting) {
+      console.log("DUPA");
+      meeting.participants.push(this.email);
+      this.meetings.sort(); /// MASAKRA 3h szuknania by się stało reakwtwe
+    },
 
-      },
-
-      addParticipant(meeting) {
-          console.log("DUPA")
-          meeting.participants.push(this.email)
-          this.meetings.sort() /// MASAKRA 3h szuknania by się stało reakwtwe
-
-      },
-
-      removeParticipant(meeting){
-          console.log("DUPA2")
-          meeting.participants.splice(meeting.participants.indexOf(this.email), 1)
-          this.meetings.sort()
-      },
-
-
-
+    removeParticipant(meeting) {
+      console.log("DUPA2");
+      meeting.participants.splice(meeting.participants.indexOf(this.email), 1);
+      this.meetings.sort();
+    }
   },
-computed: {
-
-      buttonText() {
-          if (!this.meetings.length) {
-              return "Dodaj Nowe Zajęcia"
-          }
-          else {
-              return "Dodaj Kolejne zajecia"
-          }
-
-      }  
-
-
-}
-
-
-}
+  computed: {
+    buttonText() {
+      if (!this.meetings.length) {
+        return "Dodaj Nowe Zajęcia";
+      } else {
+        return "Dodaj Kolejne zajecia";
+      }
+    }
+  }
+};
 </script>

@@ -15,37 +15,29 @@
 <script>
 export default {
   data() {
-      return {
-          newMeeting: {},
-          meetingNameEmpty: true,
-          displayNotice: false
-      };
+    return {
+      newMeeting: {},
+      meetingNameEmpty: true,
+      displayNotice: false
+    };
   },
   methods: {
-      addNewMeeting() {
-        if (!this.meetingNameEmpty) {
-        this.newMeeting.participants =  [];
-        this.$emit('added', this.newMeeting);
-        this.newMeeting = {}
-        this.displayNotice = false ;
+    addNewMeeting() {
+      if (!this.meetingNameEmpty) {
+        this.newMeeting.participants = [];
+        this.$emit("added", this.newMeeting);
+        this.newMeeting = {};
+        this.displayNotice = false;
       }
     },
-        verifyNotEmpty() {
-            console.log("DUPA3")
-            if (this.newMeeting.name) {
-                this.meetingNameEmpty = false;
-                }
-            else{
-                this.meetingNameEmpty = true
-                this.displayNotice = true   
-            }
-
-
-        }
-  },
-  
-}
-
-
-
+    verifyNotEmpty() {
+      if (this.newMeeting.name) {
+        this.meetingNameEmpty = false;
+      } else {
+        this.meetingNameEmpty = true;
+        this.displayNotice = true;
+      }
+    }
+  }
+};
 </script>
